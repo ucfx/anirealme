@@ -1,4 +1,4 @@
-export default function Heading({ children }) {
+export default function Heading({ children }: { children: React.ReactNode }) {
   return (
     <h2
       className="relative text-2xl font-bold text-foreground mb-6 px-4 w-fit

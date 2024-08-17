@@ -1,4 +1,4 @@
-export default function Logo({ className }) {
+export default function Logo({ className }: { className: string }) {
   return (
     <svg className={className} viewBox="10 0 30 50">
       <path
