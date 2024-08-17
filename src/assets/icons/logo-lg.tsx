@@ -1,4 +1,10 @@
-const SvgComponent = ({ fill, className }) => {
+const SvgComponent = ({
+  fill,
+  className,
+}: {
+  fill: string;
+  className: string;
+}) => {
   const cls2 = fill;
   return (
     <svg className={className} viewBox="0 0 250 50">
