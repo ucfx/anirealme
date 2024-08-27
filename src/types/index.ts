@@ -171,12 +171,20 @@ export type MangaData = {
   demographics: Genre[];
 };
 
-export type MangaApiResponse = {
+export type DataResponse<T> = {
   pagination: Pagination;
-  data: MangaData[];
+  data: T;
 };
 
-export type AnimeApiResponse = {
-  pagination: Pagination;
-  data: AnimeData[];
+type ErrorStatusResponse = {
+  ok: false;
+  message: string;
 };
+
+type SuccessStatusResponse<T> = {
+  ok: true;
+  pagination: Pagination;
+  data: T;
+};
+
+export type APIResponse<T> = ErrorStatusResponse | SuccessStatusResponse<T>;

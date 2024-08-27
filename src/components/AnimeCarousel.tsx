@@ -16,15 +16,17 @@ import EmblaSlide from "./carousel/EmblaSlide";
 import "./carousel/embla.css";
 
 import fetchData from "@/utils/fetchData";
+import FetchError from "./FetchError";
 
 const OPTIONS: EmblaOptionsType = {
   loop: true,
   duration: 50,
 };
 
-export default async function TopAnime({ q }: { q?: string }) {
-  const data = await fetchData(`top/anime${q}`);
-  const topAnime: AnimeData[] = data?.data as AnimeData[];
+export default async function AnimeCarousel({ q }: { q?: string }) {
+  const res = await fetchData<AnimeData[]>(`top/anime${q}`);
+  if (res.ok === false) return <FetchError msg={res.message} />;
+  const topAnime = res.data;
 
   return (
     <EmblaCarousel options={OPTIONS}>

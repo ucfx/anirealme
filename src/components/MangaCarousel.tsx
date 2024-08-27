@@ -16,15 +16,17 @@ import EmblaSlide from "./carousel/EmblaSlide";
 import "./carousel/embla.css";
 
 import fetchData from "@/utils/fetchData";
+import FetchError from "./FetchError";
 
 const OPTIONS: EmblaOptionsType = {
   loop: true,
   duration: 50,
 };
 
-export default async function TopManga({ q }: { q?: string }) {
-  const data = await fetchData(`top/manga${q}`);
-  const topManga = data?.data as MangaData[];
+export default async function MangaCarousel({ q }: { q?: string }) {
+  const res = await fetchData<MangaData[]>(`top/manga${q}`);
+  if (res.ok === false) return <FetchError msg={res.message} />;
+  const topManga = res.data;
 
   return (
     <EmblaCarousel options={OPTIONS}>
