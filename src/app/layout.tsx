@@ -7,6 +7,7 @@ const tajawal = Tajawal({
   weight: ["200", "300", "400", "500", "700", "800", "900"],
 });
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Anirealme",
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html className="scroll-smooth" lang="en" suppressHydrationWarning={true}>
       <body className={tajawal.className}>
         <div
           vaul-drawer-wrapper=""
@@ -28,6 +29,7 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Header />
             {children}
+            <Footer />
           </ThemeProvider>
         </div>
       </body>

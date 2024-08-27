@@ -1,6 +1,6 @@
 import Link from "next/link";
-import LogoSM from "@/assets/icons/logo-sm";
-import LogoLG from "@/assets/icons/logo-lg";
+import LogoSM from "@/assets/img/logo-sm";
+import LogoLG from "@/assets/img/logo-lg";
 
 export default function Logo({ size }: { size: "sm" | "lg" }) {
   const SIZE = {
@@ -10,7 +10,7 @@ export default function Logo({ size }: { size: "sm" | "lg" }) {
       logoLG: "h-[28px]",
     },
     sm: {
-      link: "gap-2 mr-4",
+      link: "gap-2",
       logoSM: "h-9",
       logoLG: "hidden lg:inline-block h-9",
     },
@@ -21,10 +21,4 @@ export default function Logo({ size }: { size: "sm" | "lg" }) {
       <LogoLG className={SIZE[size].logoLG} fill="fill-primary" />
     </Link>
   );
-}
-{
-  /* <Link href={"/"} className="">
-  <LogoSM className={"h-9"} />
-  <LogoLG className={"hidden lg:inline-block h-9"} fill="fill-primary" />
-</Link>; */
 }

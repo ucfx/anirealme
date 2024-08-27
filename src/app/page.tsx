@@ -1,132 +1,75 @@
-"use client";
 import Heading from "@/components/Heading";
-import { EmblaOptionsType } from "embla-carousel";
-import EmblaCarousel from "@/components/carousel/EmblaCarousel";
-import "@/components/carousel/embla.css";
-import { useEffect, useState } from "react";
-import { AnimeArray } from "@/types";
-import { Star, MonitorPlay } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import CarouselLoading from "@/components/CarouselLoading";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
-
-const OPTIONS: EmblaOptionsType = {
-  loop: true,
-  duration: 50,
-};
+import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import TopAnime from "@/components/TopAnime";
+import TopManga from "@/components/TopManga";
+import Hero from "@/components/Hero";
 
 export default function Home() {
-  const [popular, setPopular] = useState<AnimeArray>([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchPopular = async () => {
-      const res = await fetch("/api/top?limit=10");
-      const data = await res.json();
-      setPopular(data?.data);
-    };
-    fetchPopular();
-  }, []);
+  const bg = [
+    "bg-[url('/img/landing-sm.jpg')] sm:bg-[url('/img/landing.jpg')]",
+    "bg-[url('/img/landing1.jpg')] sm:bg-[url('/img/landing1.jpg')]",
+  ];
 
-  useEffect(() => {
-    if (popular.length > 0) {
-      setLoading(false);
-    }
-  }, [popular]);
+  console.log(bg);
   return (
     <main>
-      <div className="container relative py-6">
-        <Heading>Popular</Heading>
-        {!loading ? (
-          <EmblaCarousel options={OPTIONS}>
-            {popular.map((anime, index) => (
-              <div
-                className={`embla__slide flex items-center flex-[0_0_100%] sm:flex-[0_0_70%] lg:flex-[0_0_50%] embla__class-names`}
-                key={anime.mal_id}
-              >
-                <div className="flex-1">
-                  <div className="w-full flex-wrap flex gap-2 md:gap-4 select-none h-full">
-                    <div
-                      className="w-[130px] h-[185px]
-                     sm:w-[190px] sm:h-[270px]
-                     lg:w-[240px] lg:h-[341px] border cursor-pointer transition hover:brightness-110"
-                    >
-                      <img
-                        src={anime.images.jpg.image_url}
-                        alt={anime.title}
-                        className="max-w-full w-full h-full"
-                      />
-                    </div>
-
-                    <div className="flex-1 flex flex-col">
-                      <p className="text-foreground text-[1.25rem] font-bold mb-1 capitalize hover:underline cursor-pointer">
-                        {anime.title}{" "}
-                        <span className="text-foreground/40">#{index + 1}</span>
-                      </p>
-                      <Separator />
-                      <div className="flex-1 flex justify-between flex-col text-sm sm:text-lg text-foreground/70 capitalize">
-                        <div className="flex flex-col justify-between flex-1">
-                          <div>
-                            <p>
-                              {anime.type}, {anime.rating.split(" ")[0]}
-                            </p>
-
-                            <p>#{anime.rank}</p>
-                            <p>{anime.status}</p>
-                          </div>
-                          <p className="flex items-center gap-2">
-                            <Star size={16} fill="#FFD700" />
-                            {anime.score}{" "}
-                            <TooltipProvider>
-                              <Tooltip delayDuration={100}>
-                                <TooltipTrigger>
-                                  {anime.scored_by > 1000000
-                                    ? `(${(anime.scored_by / 1000000).toFixed(
-                                        1
-                                      )}M)`
-                                    : `(${(anime.scored_by / 1000).toFixed(1)}
-                            K)`}
-                                </TooltipTrigger>
-                                <TooltipContent className="bg-background border border-foreground/20">
-                                  {anime.scored_by}
-                                </TooltipContent>
-                              </Tooltip>
-                            </TooltipProvider>
-                          </p>
-                        </div>
-
-                        <div className="hidden sm:flex items-center flex-wrap justify-between gap-2">
-                          <Separator />
-                          <Button variant={"outline"}>Explore</Button>
-                          <Button>
-                            <MonitorPlay className="mr-3" />
-                            Trailer
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex sm:hidden mt-2 flex-1 items-center flex-wrap justify-between gap-2">
-                    <Separator />
-                    <Button variant={"outline"}>Explore</Button>
-                    <Button>
-                      <MonitorPlay className="mr-3" />
-                      Trailer
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </EmblaCarousel>
-        ) : (
-          <>loading...</>
-        )}
+      <div className="container">
+        <Hero
+          title={"anime"}
+          description="Welcome to AniRealme - Your Ultimate Anime Universe! Dive into a world of endless adventures, epic battles, and unforgettable characters. Whether you're a seasoned otaku or just starting your anime journey, AniRealme has something for everyone."
+          linkId={"top-anime"}
+          bg={bg[0]}
+        />
       </div>
-      <div className="h-[100vh]"></div>
+
+      <div className="container pt-14" id={"top-anime"}>
+        <div>
+          <Heading>Top Airing Anime</Heading>
+        </div>
+        <Suspense fallback={<CarouselLoading />}>
+          <TopAnime q="?limit=10&filter=airing&type=tv" />
+        </Suspense>
+      </div>
+
+      <div className="container pt-14">
+        <div>
+          <Heading>Top Favorite Anime</Heading>
+        </div>
+        <Suspense fallback={<CarouselLoading />}>
+          <TopAnime q="?limit=10&filter=favorite&type=tv" />
+        </Suspense>
+      </div>
+
+      <div className="container pt-14">
+        <Hero
+          title={"manga"}
+          description="Discover Endless Manga Adventures! AniRealme brings you a rich selection of manga, from epic adventures to heartwarming tales. Whether you're new to manga or a devoted fan, explore captivating stories and stunning artwork that will keep you hooked. Start your manga journey with AniRealme today!"
+          linkId={"top-manga"}
+          bg={bg[1]}
+        />
+      </div>
+
+      <div className="container pt-14" id={"top-manga"}>
+        <div>
+          <Heading>Top Publishing Manga</Heading>
+        </div>
+        <Suspense fallback={<CarouselLoading />}>
+          <TopManga q="?limit=10&filter=publishing" />
+        </Suspense>
+      </div>
+
+      <div className="container pt-14">
+        <div>
+          <Heading>Top Favorite Manga</Heading>
+        </div>
+        <Suspense fallback={<CarouselLoading />}>
+          <TopManga q="?limit=10&filter=favorite" />
+        </Suspense>
+      </div>
     </main>
   );
 }

@@ -10,10 +10,10 @@ import {
 } from "./EmblaCarouselArrowButtons";
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import Autoplay from "embla-carousel-autoplay";
+import EmblaSlide from "./EmblaSlide";
 import { Pause, Play } from "lucide-react";
-
 type PropType = {
-  children: React.ReactNode;
+  children: React.ReactElement<typeof EmblaSlide>[];
   options?: EmblaOptionsType;
 };
 
