@@ -1,7 +1,7 @@
 "use client";
 import ThemeDropdown from "@/components/ThemeDropdown";
-import LogoSM from "@/assets/icons/logo-sm";
-import LogoLG from "@/assets/icons/logo-lg";
+import LogoSM from "@/assets/img/logo-sm";
+import LogoLG from "@/assets/img/logo-lg";
 
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -17,7 +17,7 @@ import {
   DrawerClose,
 } from "./ui/drawer";
 
-import NavLink from "./Navbar";
+import Navbar from "./Navbar";
 import { useState } from "react";
 import Logo from "./Logo";
 
@@ -28,7 +28,7 @@ export default function Header() {
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="hidden md:flex">
           <Logo size="sm" />
-          <NavLink />
+          <Navbar />
         </div>
         <Drawer direction="left" open={open} onOpenChange={setOpen}>
           <DrawerTrigger asChild>
@@ -40,8 +40,6 @@ export default function Header() {
             </Button>
           </DrawerTrigger>
           <DrawerContent
-            aria-description="Navigation"
-            aria-describedby="drawer"
             className="md:hidden flex justify-between p-4 rounded-[0px] rounded-r-xl flex-row-reverse
                         h-full max-w-[250px] fixed bottom-0 left-0 
                         [&>div:first-child]:hidden"
@@ -54,7 +52,7 @@ export default function Header() {
                   <Logo size="lg" />
                 </DrawerClose>
               </DrawerTitle>
-              <NavLink setOpen={setOpen} />
+              <Navbar setOpen={setOpen} />
             </div>
           </DrawerContent>
         </Drawer>

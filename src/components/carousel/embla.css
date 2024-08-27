@@ -18,7 +18,6 @@
 
 .embla__slide {
     transform: translate3d(0, 0, 0);
-    /* flex: 0 0 var(--slide-size); */
     min-width: 0;
     height: 100%;
     padding-left: var(--slide-spacing);
@@ -83,7 +82,7 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
-    margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
+    margin-right: calc((2rem - 1.4rem) / 2 * -1);
 }
 
 .embla__dot {
@@ -98,8 +97,8 @@
     border: 0;
     padding: 0;
     margin: 0;
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 2rem;
+    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,8 +107,8 @@
 
 .embla__dot:after {
     box-shadow: inset 0 0 0 0.1rem hsl(var(--foreground) / 0.1);
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.2rem;
+    height: 1.2rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -117,7 +116,7 @@
 }
 
 .embla__dot--selected:after {
-    box-shadow: inset 0 0 0 0.2rem hsl(var(--foreground));
+    box-shadow: inset 0 0 0 0.15rem hsl(var(--foreground));
 }
 
 .embla__slide {
@@ -126,6 +125,6 @@
 }
 
 .embla__slide:not(.is-snapped) {
-    opacity: 0.5;
-    filter: blur(0.15rem);
+    opacity: 0.8;
+    filter: blur(0.08rem);
 }
