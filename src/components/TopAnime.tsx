@@ -23,8 +23,10 @@ const OPTIONS: EmblaOptionsType = {
 };
 
 export default async function TopAnime({ q }: { q?: string }) {
-  const data = await fetchData(`top/anime${q}`);
-  const topAnime: AnimeData[] = data?.data as AnimeData[];
+  const res = await fetchData<AnimeData[]>(`top/anime${q}`);
+  if (res.ok === false) return <div>{res.message}</div>;
+
+  const topAnime = res.data;
 
   return (
     <EmblaCarousel options={OPTIONS}>

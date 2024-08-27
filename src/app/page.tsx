@@ -1,9 +1,6 @@
 import Heading from "@/components/Heading";
 import CarouselLoading from "@/components/CarouselLoading";
 import { Suspense } from "react";
-import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
-import Link from "next/link";
 import TopAnime from "@/components/TopAnime";
 import TopManga from "@/components/TopManga";
 import Hero from "@/components/Hero";
@@ -14,7 +11,6 @@ export default function Home() {
     "bg-[url('/img/landing1.jpg')] sm:bg-[url('/img/landing1.jpg')]",
   ];
 
-  console.log(bg);
   return (
     <main>
       <div className="container">
