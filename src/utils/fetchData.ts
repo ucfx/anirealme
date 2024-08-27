@@ -11,7 +11,11 @@ export default async function fetchData<T>(
 ): Promise<APIResponse<T>> {
   try {
     const response = await limiter.schedule(() =>
-      fetch(`https://api.jikan.moe/v4/${endpoint}`)
+      fetch(`https://api.jikan.moe/v4/${endpoint}`, {
+        next: {
+          revalidate: 10,
+        },
+      })
     );
     if (!response.ok) {
       throw new Error("Failed to fetch data");
