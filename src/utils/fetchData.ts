@@ -2,7 +2,7 @@ import Bottleneck from "bottleneck";
 import { APIResponse, DataResponse } from "../types";
 
 const limiter = new Bottleneck({
-  minTime: 400,
+  minTime: 1000,
   maxConcurrent: 1,
 });
 
@@ -10,13 +10,14 @@ export default async function fetchData<T>(
   endpoint: string
 ): Promise<APIResponse<T>> {
   try {
-    const response = await limiter.schedule(() =>
-      fetch(`https://api.jikan.moe/v4/${endpoint}`, {
+    const response = await limiter.schedule(() => {
+      console.log("fetch:", new Date().toISOString());
+      return fetch(`https://api.jikan.moe/v4/${endpoint}`, {
         next: {
           revalidate: 10,
         },
-      })
-    );
+      });
+    });
     if (!response.ok) {
       throw new Error("Failed to fetch data");
     }
