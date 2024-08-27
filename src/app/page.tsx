@@ -1,8 +1,8 @@
 import Heading from "@/components/Heading";
 import CarouselLoading from "@/components/CarouselLoading";
 import { Suspense } from "react";
-import TopAnime from "@/components/TopAnime";
-import TopManga from "@/components/TopManga";
+import AnimeCarousel from "@/components/AnimeCarousel";
+import MangaCarousel from "@/components/MangaCarousel";
 import Hero from "@/components/Hero";
 
 export default function Home() {
@@ -27,7 +27,7 @@ export default function Home() {
           <Heading>Top Airing Anime</Heading>
         </div>
         <Suspense fallback={<CarouselLoading />}>
-          <TopAnime q="?limit=10&filter=airing&type=tv" />
+          <AnimeCarousel q="?limit=10&filter=airing&type=tv" />
         </Suspense>
       </div>
 
@@ -36,7 +36,7 @@ export default function Home() {
           <Heading>Top Favorite Anime</Heading>
         </div>
         <Suspense fallback={<CarouselLoading />}>
-          <TopAnime q="?limit=10&filter=favorite&type=tv" />
+          <AnimeCarousel q="?limit=10&filter=favorite&type=tv" />
         </Suspense>
       </div>
 
@@ -54,7 +54,7 @@ export default function Home() {
           <Heading>Top Publishing Manga</Heading>
         </div>
         <Suspense fallback={<CarouselLoading />}>
-          <TopManga q="?limit=10&filter=publishing" />
+          <MangaCarousel q="?limit=10&filter=publishing" />
         </Suspense>
       </div>
 
@@ -63,7 +63,7 @@ export default function Home() {
           <Heading>Top Favorite Manga</Heading>
         </div>
         <Suspense fallback={<CarouselLoading />}>
-          <TopManga q="?limit=10&filter=favorite" />
+          <MangaCarousel q="?limit=10&filter=favorite" />
         </Suspense>
       </div>
     </main>
