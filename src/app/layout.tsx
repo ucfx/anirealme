@@ -10,8 +10,26 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Anirealme",
-  description: "Anirealme is a website that provides information about anime.",
+  title: {
+    default: "Anirealme",
+    template: "%s | Anirealme",
+  },
+  description:
+    "Your gateway to the captivating worlds of anime and manga. Dive into a rich collection of series, discover new favorites, and stay updated with the latest in the anime and manga universe. Whether you're a seasoned fan or just starting your journey, AniRealme offers everything you need to explore and enjoy these vibrant storytelling mediums.",
+  openGraph: {
+    type: "website",
+    title: "Anirealme",
+    description: "Your gateway to the captivating worlds of anime and manga.",
+    url: "https://anirealme.vercel.app/",
+    images: [
+      {
+        url: "https://anirealme.vercel.app/img/og-image.jpg",
+        width: 1200,
+        height: 675,
+        alt: "Anirealme",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

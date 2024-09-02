@@ -3,7 +3,7 @@ import { Skeleton } from "./ui/skeleton";
 export default function CarouselLoading() {
   const randomWidth = () => Math.floor(Math.random() * (90 - 25 + 1)) + 25;
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-hidden">
       <div className="flex gap-5 py-6">
         {Array.from({ length: 2 }).map((_, index) => (
           <div

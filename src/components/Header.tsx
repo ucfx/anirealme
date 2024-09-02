@@ -1,11 +1,6 @@
 "use client";
 import ThemeDropdown from "@/components/ThemeDropdown";
-import LogoSM from "@/assets/img/logo-sm";
-import LogoLG from "@/assets/img/logo-lg";
-
-import Link from "next/link";
 import { Button } from "./ui/button";
-// import Github from "@/assets/icons/github";
 import { CommandMenu } from "./CommandMenu";
 import { GitHubLogoIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import {
