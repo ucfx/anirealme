@@ -1,69 +1,63 @@
 import Heading from "@/components/Heading";
 import CarouselLoading from "@/components/CarouselLoading";
 import { Suspense } from "react";
-import AnimeCarousel from "@/components/AnimeCarousel";
-import MangaCarousel from "@/components/MangaCarousel";
-import Hero from "@/components/Hero";
-
+import Carousel from "@/components/Carousel";
+import Hero, { type HeroProps } from "@/components/Hero";
+import Welcome from "@/components/Welcome";
+import { scrollFade } from "@/constant/animation";
 export default function Home() {
-  const bg = [
-    "bg-[url('/img/landing-sm.jpg')] sm:bg-[url('/img/landing.jpg')]",
-    "bg-[url('/img/landing1.jpg')] sm:bg-[url('/img/landing1.jpg')]",
+  const heroSection: HeroProps[] = [
+    {
+      title: "anime",
+      description:
+        "Immerse yourself in the vibrant world of anime, where every series brings thrilling adventures and unforgettable characters. Discover top-rated shows, explore trending titles, and dive into stories that spark your imagination and keep you on the edge of your seat.",
+      linkId: "top-anime",
+      bg: "bg-[url('/img/landing-1-sm.jpg')] sm:bg-[url('/img/landing-1.jpg')]",
+    },
+    {
+      title: "manga",
+      description:
+        "Step into the captivating universe of manga, where every page is filled with stunning artwork and compelling narratives. Whether you're exploring popular titles or uncovering hidden gems, each story offers a unique journey that will leave you wanting more.",
+      linkId: "top-manga",
+      bg: "bg-[url('/img/landing-2-sm.jpg')] sm:bg-[url('/img/landing-2.jpg')]",
+    },
   ];
 
   return (
     <main>
+      <Welcome />
+
       <div className="container">
-        <Hero
-          title={"anime"}
-          description="Welcome to AniRealme - Your Ultimate Anime Universe! Dive into a world of endless adventures, epic battles, and unforgettable characters. Whether you're a seasoned otaku or just starting your anime journey, AniRealme has something for everyone."
-          linkId={"top-anime"}
-          bg={bg[0]}
-        />
-      </div>
-
-      <div className="container pt-14" id={"top-anime"}>
-        <div>
-          <Heading>Top Airing Anime</Heading>
+        <Hero {...heroSection[0]} />
+        <div className="pt-14" id={"top-anime"}>
+          <Heading {...scrollFade}>Top Airing Anime</Heading>
         </div>
         <Suspense fallback={<CarouselLoading />}>
-          <AnimeCarousel q="?limit=10&filter=airing&type=tv" />
+          <Carousel endpoint="top/anime?limit=10&filter=airing&type=tv" />
+        </Suspense>
+
+        <div className="pt-14">
+          <Heading {...scrollFade}>Top Favorite Anime</Heading>
+        </div>
+        <Suspense fallback={<CarouselLoading />}>
+          <Carousel endpoint="top/anime?limit=10&filter=favorite&type=tv" />
         </Suspense>
       </div>
 
       <div className="container pt-14">
-        <div>
-          <Heading>Top Favorite Anime</Heading>
+        <Hero {...heroSection[1]} />
+        <div className="pt-14" id={"top-manga"}>
+          <Heading {...scrollFade}>Top Publishing Manga</Heading>
         </div>
         <Suspense fallback={<CarouselLoading />}>
-          <AnimeCarousel q="?limit=10&filter=favorite&type=tv" />
+          <Carousel endpoint="top/manga?limit=10&filter=publishing" />
         </Suspense>
-      </div>
 
-      <div className="container pt-14">
-        <Hero
-          title={"manga"}
-          description="Discover Endless Manga Adventures! AniRealme brings you a rich selection of manga, from epic adventures to heartwarming tales. Whether you're new to manga or a devoted fan, explore captivating stories and stunning artwork that will keep you hooked. Start your manga journey with AniRealme today!"
-          linkId={"top-manga"}
-          bg={bg[1]}
-        />
-      </div>
-
-      <div className="container pt-14" id={"top-manga"}>
-        <div>
-          <Heading>Top Publishing Manga</Heading>
+        <div className="pt-14">
+          <Heading {...scrollFade}>Top Favorite Manga</Heading>
         </div>
         <Suspense fallback={<CarouselLoading />}>
-          <MangaCarousel q="?limit=10&filter=publishing" />
-        </Suspense>
-      </div>
-
-      <div className="container pt-14">
-        <div>
-          <Heading>Top Favorite Manga</Heading>
-        </div>
-        <Suspense fallback={<CarouselLoading />}>
-          <MangaCarousel q="?limit=10&filter=favorite" />
+          <Carousel endpoint="top/manga?limit=10&filter=favorite" />
         </Suspense>
       </div>
     </main>

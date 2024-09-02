@@ -11,10 +11,10 @@ export default async function fetchData<T>(
 ): Promise<APIResponse<T>> {
   try {
     const response = await limiter.schedule(() => {
-      console.log("fetch:", new Date().toISOString());
+      console.log("fetch:", new Date().toISOString(), endpoint);
       return fetch(`https://api.jikan.moe/v4/${endpoint}`, {
         next: {
-          revalidate: 10,
+          revalidate: 60 * 60, // 1 hour
         },
       });
     });

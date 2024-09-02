@@ -1,10 +1,10 @@
-const SvgComponent = ({
+export default function LogoName({
   fill,
   className,
 }: {
   fill: string;
   className: string;
-}) => {
+}) {
   const cls2 = fill;
   return (
     <svg className={className} viewBox="0 0 250 50">
@@ -34,5 +34,4 @@ const SvgComponent = ({
       />
     </svg>
   );
-};
-export default SvgComponent;
+}
