@@ -27,11 +27,7 @@ const OPTIONS: EmblaOptionsType = {
   duration: 50,
 };
 
-export default async function AnimeCarousel({
-  endpoint,
-}: {
-  endpoint: string;
-}) {
+export default async function Carousel({ endpoint }: { endpoint: string }) {
   const res = await fetchData<AnimeData[] | MangaData[]>(endpoint);
   if (!res.ok) return <FetchError msg={res.message} />;
   const data = res.data;
@@ -53,7 +49,7 @@ export default async function AnimeCarousel({
                   <span className="text-accent-foreground/50 font-bold mr-1">
                     {index + 1}.
                   </span>
-                  {anime.title}
+                  {anime.titles[0].title}
                 </h3>
               </Link>
               <Separator className="col-span-2 md:col-auto md:my-1" />
@@ -65,7 +61,7 @@ export default async function AnimeCarousel({
               >
                 <Image
                   src={anime.images.jpg.image_url}
-                  alt={anime.title}
+                  alt={anime.titles[0].title}
                   width={240}
                   height={341}
                   className="max-h-full w-full"

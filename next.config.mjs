@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "cdn.myanimelist.net",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+        port: "",
+      },
     ],
   },
 };
