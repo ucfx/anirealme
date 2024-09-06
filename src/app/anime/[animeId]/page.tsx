@@ -45,7 +45,7 @@ export default async function AnimeDetailPage({ params }: Props) {
             <div className="text-center">
               <h4 className="text-base">Score</h4>
               <div className="flex items-center justify-center flex-wrap space-x-1">
-                <Star size={32} className="fill-yellow-300" />
+                <Star size={32} className="fill-yellow-300 stroke-yellow-300" />
                 <span className="text-4xl">{anime.score}</span>
                 <span className="w-full text-foreground/70 text-sm">
                   {anime.scored_by}
@@ -108,22 +108,26 @@ export default async function AnimeDetailPage({ params }: Props) {
                 Trailer
               </h3>
               <div className="flex-1 flex items-center justify-center w-full h-full rounded-md">
-                <Link
-                  href={`/anime/${anime.mal_id}/trailer`}
-                  className="relative group cursor-pointer"
-                >
-                  <CirclePlay
-                    size={48}
-                    className="z-[1] stroke-1 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                  />
-                  <Image
-                    src={anime.trailer.images.medium_image_url}
-                    alt={`${anime.titles[0].title} trailer`}
-                    width={240}
-                    height={135}
-                    className="rounded-md transition-[filter] brightness-90 group-hover:brightness-100"
-                  />
-                </Link>
+                {anime.trailer.youtube_id ? (
+                  <Link
+                    href={`/anime/${anime.mal_id}/trailer`}
+                    className="relative group cursor-pointer"
+                  >
+                    <CirclePlay
+                      size={48}
+                      className="z-[1] stroke-1 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    />
+                    <Image
+                      src={anime.trailer.images.medium_image_url}
+                      alt={`${anime.titles[0].title} trailer`}
+                      width={240}
+                      height={135}
+                      className="rounded-md transition-[filter] brightness-90 group-hover:brightness-100"
+                    />
+                  </Link>
+                ) : (
+                  <p className="text-foreground/70">Trailer not available</p>
+                )}
               </div>
             </div>
 
