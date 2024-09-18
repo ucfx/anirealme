@@ -1,3 +1,4 @@
+import UnderDevelopment from "@/components/UnderDevelopment";
 export default function Top() {
-  return <>top anime</>;
+  return <UnderDevelopment />;
 }

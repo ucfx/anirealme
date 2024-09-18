@@ -1,6 +1,6 @@
 import CustomBreadcrumb from "@/components/CustomBreadcrumb";
-import { AnimeData } from "@/types";
-import fetchData from "@/utils/fetchData";
+import { AnimeData } from "@/types/anime";
+import fetchData from "@/lib/fetchData";
 import type { Metadata } from "next";
 
 type Props = {

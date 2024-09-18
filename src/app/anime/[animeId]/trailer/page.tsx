@@ -2,9 +2,9 @@ type Props = {
   params: { animeId: string };
 };
 
-import fetchData from "@/utils/fetchData";
+import fetchData from "@/lib/fetchData";
 import FetchError from "@/components/FetchError";
-import { AnimeData } from "@/types";
+import { AnimeData } from "@/types/anime";
 import Video from "@/components/Video";
 import { Metadata } from "next";
 
@@ -22,7 +22,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TrailerPage({ params }: Props) {
   const { animeId } = params;
-  console.log("animeId", animeId);
   const res = await fetchData<AnimeData>(`anime/${animeId}`);
   if (!res.ok) {
     return <FetchError msg={res.message} />;
