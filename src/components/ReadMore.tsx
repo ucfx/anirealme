@@ -17,7 +17,7 @@ export default function ReadMore({
           __html: truncatedText.replaceAll("\n", "<br />"),
         }}
       />
-      {text.length <= maxLength && (
+      {text.length >= maxLength && (
         <>
           <label
             htmlFor="readMoreToggle"
