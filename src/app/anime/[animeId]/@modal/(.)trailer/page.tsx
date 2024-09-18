@@ -1,8 +1,8 @@
 import Modal, { ModalTitle } from "@/components/Modal";
 import type { Metadata } from "next";
-import fetchData from "@/utils/fetchData";
+import fetchData from "@/lib/fetchData";
 import FetchError from "@/components/FetchError";
-import { AnimeData } from "@/types";
+import { AnimeData } from "@/types/anime";
 import Video from "@/components/Video";
 import { Button } from "@/components/ui/button";
 import { SquareArrowOutUpRight } from "lucide-react";

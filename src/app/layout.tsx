@@ -11,8 +11,8 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "Anirealme",
-    template: "%s | Anirealme",
+    default: "AniRealme",
+    template: "%s | AniRealme",
   },
   description:
     "Your gateway to the captivating worlds of anime and manga. Dive into a rich collection of series, discover new favorites, and stay updated with the latest in the anime and manga universe. Whether you're a seasoned fan or just starting your journey, AniRealme offers everything you need to explore and enjoy these vibrant storytelling mediums.",
@@ -46,7 +46,7 @@ export default function RootLayout({
         >
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Header />
-            {children}
+            <main className="min-h-screen">{children}</main>
             <Footer />
           </ThemeProvider>
         </div>

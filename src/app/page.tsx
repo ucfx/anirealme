@@ -24,7 +24,7 @@ export default function Home() {
   ];
 
   return (
-    <main>
+    <>
       <Welcome />
 
       <div className="container">
@@ -44,7 +44,7 @@ export default function Home() {
         </Suspense>
       </div>
 
-      <div className="container pt-14">
+      <div className="container py-14">
         <Hero {...heroSection[1]} />
         <div className="pt-14" id={"top-manga"}>
           <Heading {...scrollFade}>Top Publishing Manga</Heading>
@@ -60,6 +60,6 @@ export default function Home() {
           <Carousel endpoint="top/manga?limit=10&filter=favorite" />
         </Suspense>
       </div>
-    </main>
+    </>
   );
 }

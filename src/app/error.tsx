@@ -10,7 +10,7 @@ export default function Error({ error }: { error: Error }) {
           Something went wrong
         </h1>
         <p className="text-lg font-medium text-gray-500">
-          {error.message || "An error occurred. Please try again later."}
+          {"An error occurred. Please try again later."}
         </p>
         <Button
           variant={"outline"}

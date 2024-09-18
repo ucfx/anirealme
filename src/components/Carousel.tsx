@@ -7,14 +7,15 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
-import FormatNumber from "../utils/formatNumber";
+import FormatNumber from "@/lib/formatNumber";
 import { EmblaOptionsType } from "embla-carousel";
 import EmblaCarousel from "./carousel/EmblaCarousel";
-import { MangaData, AnimeData } from "@/types/index";
+import { AnimeData } from "@/types/anime";
+import { MangaData } from "@/types/manga";
 import EmblaSlide from "./carousel/EmblaSlide";
 import "./carousel/embla.css";
 
-import fetchData from "@/utils/fetchData";
+import fetchData from "@/lib/fetchData";
 import FetchError from "./FetchError";
 import Image from "next/image";
 import Link from "next/link";
@@ -60,7 +61,7 @@ export default async function Carousel({ endpoint }: { endpoint: string }) {
                      lg:w-[240px] lg:h-[341px] flex flex-col justify-center md:row-span-3 md:order-first border cursor-pointer transition hover:brightness-90"
               >
                 <Image
-                  src={anime.images.jpg.image_url}
+                  src={anime.images.webp.image_url}
                   alt={anime.titles[0].title}
                   width={240}
                   height={341}

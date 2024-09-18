@@ -19,15 +19,36 @@ type PropType = {
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { options, children } = props;
+  const ref = React.useRef<HTMLDivElement>(null);
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
     ClassNames(),
     Autoplay({
-      playOnInit: true,
+      playOnInit: false,
       delay: 5000,
     }),
   ]);
 
   const [isPlaying, setIsPlaying] = React.useState(true);
+
+  // create observer to pause autoplay when the tab is not visible
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            emblaApi?.plugins()?.autoplay.play();
+          } else {
+            emblaApi?.plugins()?.autoplay.stop();
+          }
+        });
+      },
+      { threshold: 0.7 }
+    );
+
+    observer.observe(ref.current as Element);
+
+    return () => observer.disconnect();
+  }, [emblaApi]);
 
   const onButtonAutoplayClick = React.useCallback(
     (callback: () => void) => {
@@ -75,7 +96,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   } = usePrevNextButtons(emblaApi);
 
   return (
-    <div className="embla">
+    <div className="embla" ref={ref}>
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">{children}</div>
       </div>

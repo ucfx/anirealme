@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import { Separator } from "./ui/separator";
 export default function Footer() {
   return (
-    <footer className="bg-accent/30 text-foreground mt-14">
+    <footer className="bg-accent/30 text-foreground mt-4">
       <div className="container py-5 mx-auto items-center flex flex-col">
         <Logo size="lg" />
         <div className="gap-4 pt-3">
