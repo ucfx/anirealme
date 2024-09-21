@@ -1,7 +1,7 @@
-import { Pagination } from "./pagination";
+import { PaginationType } from "./pagination";
 
 export type DataResponse<T> = {
-  pagination: Pagination;
+  pagination: PaginationType;
   data: T;
 };
 
@@ -12,7 +12,7 @@ type ErrorStatusResponse = {
 
 type SuccessStatusResponse<T> = {
   ok: true;
-  pagination: Pagination;
+  pagination: PaginationType;
   data: T;
 };
 

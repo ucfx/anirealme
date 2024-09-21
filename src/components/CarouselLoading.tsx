@@ -63,13 +63,19 @@ export default function CarouselLoading() {
         ))}
       </div>
 
-      <div className="flex justify-between items-center mt-7">
+      <div className="hidden md:flex justify-between items-center mt-7">
         <Skeleton className="h-14 w-full md:w-[150px]" />
         <div className="flex justify-between gap-2">
           {Array.from({ length: 10 }).map((_, i) => (
             <Skeleton key={i} className="h-6 w-6 rounded-full" />
           ))}
         </div>
+      </div>
+
+      <div className="flex md:hidden justify-between items-center mt-7">
+        <Skeleton className="h-14 w-14" />
+        <Skeleton className="h-14 w-14" />
+        <Skeleton className="h-14 w-14" />
       </div>
     </div>
   );

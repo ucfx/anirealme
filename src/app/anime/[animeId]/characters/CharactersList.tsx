@@ -58,40 +58,47 @@ export default function CharactersList({
           key={index}
           className="bg-accent dark:bg-accent/40 shadow-lg w-full flex flex-col gap-4 md:gap-0 md:flex-row justify-between p-6 rounded-xl"
         >
-          <div className="flex">
-            <Link
-              className="hover:brightness-75 transition-[filter] w-[80px] h-[120px] flex flex-col justify-center"
-              href={`/character/${c.character.mal_id}`}
-              prefetch={false}
-            >
-              <Image
-                src={c.character.images.webp.image_url}
-                alt={c.character.name}
-                width={225}
-                height={350}
-                className="rounded-xl max-h-full w-full"
-              />
-            </Link>
+          <div>
+            <h5 className="text-foreground/50 text-xs font-medium uppercase mb-2">
+              character
+            </h5>
+            <div className="flex">
+              <Link
+                className="hover:brightness-75 transition-[filter] w-[80px] h-[120px] flex flex-col justify-center"
+                href={`/character/${c.character.mal_id}`}
+                prefetch={false}
+              >
+                <Image
+                  src={c.character.images.webp.image_url}
+                  alt={c.character.name}
+                  width={225}
+                  height={350}
+                  className="rounded-xl max-h-full w-full"
+                />
+              </Link>
 
-            <div className="mx-2 text-sm font-medium text-foreground flex flex-col h-full">
-              <h4 className="hover:underline">
-                <Link
-                  href={`/character/${c.character.mal_id}`}
-                  prefetch={false}
-                >
-                  {c.character.name}
-                </Link>
-              </h4>
+              <div className="mx-2 text-sm font-medium text-foreground flex flex-col h-full">
+                <h4 className="hover:underline">
+                  <Link
+                    href={`/character/${c.character.mal_id}`}
+                    prefetch={false}
+                  >
+                    {c.character.name}
+                  </Link>
+                </h4>
 
-              <span className="mt-1 text-xs text-foreground/80">{c.role}</span>
-              <div className="flex-1 flex flex-col justify-end">
-                <span className="mt-1 text-base">
-                  <HeartIcon
-                    size={18}
-                    className="fill-current stroke-none inline mr-1"
-                  />
-                  {c.favorites}
+                <span className="mt-1 text-xs text-foreground/80">
+                  {c.role}
                 </span>
+                <div className="flex-1 flex flex-col justify-end">
+                  <span className="mt-1 text-base">
+                    <HeartIcon
+                      size={18}
+                      className="fill-current stroke-none inline mr-1"
+                    />
+                    {c.favorites}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -99,34 +106,39 @@ export default function CharactersList({
           {c.voice_actors.length === 0 ? (
             <div className="flex items-center self-end">N/A</div>
           ) : (
-            <div className="flex self-end">
-              <div className="mx-2 text-right text-sm font-medium text-foreground">
-                <h4 className="hover:underline">
-                  <Link
-                    href={`/people/${c.voice_actors[0].person.mal_id}`}
-                    prefetch={false}
-                  >
-                    {c.voice_actors[0].person.name}
-                  </Link>
-                </h4>
+            <div className="self-end">
+              <h5 className="text-foreground/50 text-xs text-right font-medium uppercase mb-2">
+                Voice Actor
+              </h5>
+              <div className="flex">
+                <div className="mx-2 text-right text-sm font-medium text-foreground">
+                  <h4 className="hover:underline">
+                    <Link
+                      href={`/people/${c.voice_actors[0].person.mal_id}`}
+                      prefetch={false}
+                    >
+                      {c.voice_actors[0].person.name}
+                    </Link>
+                  </h4>
 
-                <span className="block mt-1 text-xs text-foreground/80">
-                  {c.voice_actors[0].language}
-                </span>
+                  <span className="block mt-1 text-xs text-foreground/80">
+                    {c.voice_actors[0].language}
+                  </span>
+                </div>
+                <Link
+                  href={`/people/${c.voice_actors[0].person.mal_id}`}
+                  prefetch={false}
+                  className="hover:brightness-75 transition-[filter] w-[80px] h-[120px] flex flex-col justify-center"
+                >
+                  <Image
+                    src={c.voice_actors[0].person.images.jpg.image_url}
+                    alt={c.voice_actors[0].person.name}
+                    width={225}
+                    height={350}
+                    className="rounded-xl max-h-full w-full"
+                  />
+                </Link>
               </div>
-              <Link
-                href={`/people/${c.voice_actors[0].person.mal_id}`}
-                prefetch={false}
-                className="hover:brightness-75 transition-[filter] w-[80px] h-[120px] flex flex-col justify-center"
-              >
-                <Image
-                  src={c.voice_actors[0].person.images.jpg.image_url}
-                  alt={c.voice_actors[0].person.name}
-                  width={225}
-                  height={350}
-                  className="rounded-xl max-h-full w-full"
-                />
-              </Link>
             </div>
           )}
         </div>

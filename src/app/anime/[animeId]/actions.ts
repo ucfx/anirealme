@@ -1,5 +1,5 @@
 "use server";
-import type { Pagination } from "@/types/pagination";
+import type { PaginationType } from "@/types/pagination";
 import fetchData from "@/lib/fetchData";
 
 import { APIResponse } from "@/types/response";
@@ -29,7 +29,7 @@ export async function fetchCharacters({
 
   const data = response.data.slice(offset, offset + limit);
 
-  const pagination: Pagination = {
+  const pagination: PaginationType = {
     last_visible_page: Math.ceil(response.data.length / limit),
     has_next_page: offset + limit < response.data.length,
     current_page: page,
@@ -65,7 +65,7 @@ export async function fetchRecommendations({
   }
 
   const data = response.data.slice(offset, offset + limit);
-  const pagination: Pagination = {
+  const pagination: PaginationType = {
     last_visible_page: Math.ceil(response.data.length / limit),
     has_next_page: offset + limit < response.data.length,
     current_page: page,

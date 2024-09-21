@@ -43,7 +43,9 @@ export default async function Carousel({ endpoint }: { endpoint: string }) {
           <Motion.Div {...scrollFade} className="flex-1">
             <div className="w-full flex-wrap grid grid-cols-[auto,1fr] grid-rows-[auto,auto,1fr] gap-2 md:gap-0 md:gap-x-4 select-none h-full">
               <Link
-                href={`/anime/${anime.mal_id}`}
+                href={`/${endpoint.includes("anime") ? "anime" : "manga"}/${
+                  anime.mal_id
+                }`}
                 className="col-span-2 md:col-auto"
               >
                 <h3 className="text-foreground text-base sm:text-lg md:text-xl font-bold capitalize hover:underline cursor-pointer">
@@ -55,7 +57,9 @@ export default async function Carousel({ endpoint }: { endpoint: string }) {
               </Link>
               <Separator className="col-span-2 md:col-auto md:my-1" />
               <Link
-                href={`/anime/${anime.mal_id}`}
+                href={`/${endpoint.includes("anime") ? "anime" : "manga"}/${
+                  anime.mal_id
+                }`}
                 className="w-[130px] h-[185px]
                      sm:w-[190px] sm:h-[270px]
                      lg:w-[240px] lg:h-[341px] flex flex-col justify-center md:row-span-3 md:order-first border cursor-pointer transition hover:brightness-90"

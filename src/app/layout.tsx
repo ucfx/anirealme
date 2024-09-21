@@ -8,6 +8,7 @@ const tajawal = Tajawal({
 });
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import Footer from "@/components/Footer";
+import GoTop from "@/components/GoTop";
 
 export const metadata: Metadata = {
   title: {
@@ -45,8 +46,11 @@ export default function RootLayout({
           className="relative flex min-h-screen flex-col bg-background"
         >
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <GoTop />
             <Header />
-            <main className="min-h-screen">{children}</main>
+            <main className="min-h-[calc(100vh-56px-278px-16px)]">
+              {children}
+            </main>
             <Footer />
           </ThemeProvider>
         </div>
