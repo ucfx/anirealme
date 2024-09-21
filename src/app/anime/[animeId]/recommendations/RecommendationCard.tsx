@@ -42,7 +42,7 @@ const RecommendationCard = function RecommendationCard({
         />
       </Link>
       <div className="flex-1 flex flex-col justify-between w-full">
-        <h4>{anime.entry.title}</h4>
+        <h4 className="text-center">{anime.entry.title}</h4>
         <span className="text-center flex items-center justify-center text-lg mt-2">
           <ThumbsUp size={20} className="inline-block mr-1" />
           {anime.votes} votes

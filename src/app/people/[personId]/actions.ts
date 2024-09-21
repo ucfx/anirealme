@@ -1,5 +1,5 @@
 import fetchData from "@/lib/fetchData";
-import { Pagination } from "@/types/pagination";
+import { PaginationType } from "@/types/pagination";
 import { Person } from "@/types/person";
 import { APIResponse } from "@/types/response";
 import { Voice } from "@/types/voice";
@@ -27,7 +27,7 @@ export async function fetchVoices({
 
   const data = response.data.voices.slice(offset, offset + limit);
 
-  const pagination: Pagination = {
+  const pagination: PaginationType = {
     last_visible_page: Math.ceil(response.data.voices.length / limit),
     has_next_page: offset + limit < response.data.voices.length,
     current_page: page,

@@ -101,19 +101,16 @@ export default function NavLink({
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] capitalize [&_li_p]:normal-case">
                 <li className="col-span-2">
-                  <NavigationMenuLink asChild>
-                    <a
-                      href="/anime"
-                      className="block group select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
+                  <Link href="/anime" legacyBehavior passHref>
+                    <NavigationMenuLink className="block group select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                       <div className="text-sm font-medium leading-none transition-all group-hover:pl-1">
                         anime list
                       </div>
                       <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                         Search and filter through a vast list of anime.
                       </p>
-                    </a>
-                  </NavigationMenuLink>
+                    </NavigationMenuLink>
+                  </Link>
                 </li>
 
                 <ul className="bg-slate-200/20 dark:bg-accent/30 p-2 col-span-2 grid grid-cols-[.45fr_1fr]">
@@ -122,19 +119,16 @@ export default function NavLink({
                   </p>
                   {AnimeTab.map((tab) => (
                     <li key={tab.text} className={tab.className}>
-                      <NavigationMenuLink asChild>
-                        <a
-                          href={tab.href}
-                          className="block group select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                        >
+                      <Link href={tab.href} legacyBehavior passHref>
+                        <NavigationMenuLink className="block group select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                           <div className="text-sm font-medium leading-none transition-all group-hover:pl-1">
                             {tab.text}
                           </div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                             {tab.desc}
                           </p>
-                        </a>
-                      </NavigationMenuLink>
+                        </NavigationMenuLink>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -148,19 +142,16 @@ export default function NavLink({
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] capitalize [&_li_p]:normal-case">
                 <li className="col-span-2">
-                  <NavigationMenuLink asChild>
-                    <a
-                      href="/anime"
-                      className="block group select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
+                  <Link href="/anime" legacyBehavior passHref>
+                    <NavigationMenuLink className="block group select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                       <div className="text-sm font-medium leading-none transition-all group-hover:pl-1">
                         Manga List
                       </div>
                       <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                         Search and filter through manga and manhwa collections.
                       </p>
-                    </a>
-                  </NavigationMenuLink>
+                    </NavigationMenuLink>
+                  </Link>
                 </li>
 
                 <ul className="bg-slate-200/20 dark:bg-accent/30 p-2 col-span-2 grid grid-cols-[.45fr_1fr]">
@@ -169,19 +160,16 @@ export default function NavLink({
                   </p>
                   {MangaTab.map((tab) => (
                     <li key={tab.text} className={tab.className}>
-                      <NavigationMenuLink asChild>
-                        <a
-                          href={tab.href}
-                          className="block group select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                        >
+                      <Link href={tab.href} legacyBehavior passHref>
+                        <NavigationMenuLink className="block group select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                           <div className="text-sm font-medium leading-none transition-all group-hover:pl-1">
                             {tab.text}
                           </div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                             {tab.desc}
                           </p>
-                        </a>
-                      </NavigationMenuLink>
+                        </NavigationMenuLink>
+                      </Link>
                     </li>
                   ))}
                 </ul>
