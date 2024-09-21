@@ -142,7 +142,7 @@ export default function NavLink({
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] capitalize [&_li_p]:normal-case">
                 <li className="col-span-2">
-                  <Link href="/anime" legacyBehavior passHref>
+                  <Link href="/manga" legacyBehavior passHref>
                     <NavigationMenuLink className="block group select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                       <div className="text-sm font-medium leading-none transition-all group-hover:pl-1">
                         Manga List
