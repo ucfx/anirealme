@@ -1,3 +1,4 @@
+"use client";
 import {
   Pagination,
   PaginationContent,
@@ -6,18 +7,39 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  //   onPageChange: (page: number) => void;
+  //   generatedParams: string;
 };
 
 export default function CustomPagination({
   currentPage,
   totalPages,
-  onPageChange,
-}: PaginationProps) {
+}: //   onPageChange,
+//   generatedParams,
+PaginationProps) {
+  const router = useRouter();
+  const onPageChange = (p: number) => {
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+
+    // check url if anime/ or manga/
+    const pathname = url.pathname.split("/")[1];
+    if (p === 1) {
+      params.delete("page");
+    } else {
+      params.set("page", p.toString());
+    }
+    const newParams = params.toString();
+
+    router.push(`/${pathname}${newParams ? "?" + newParams : ""}`);
+  };
+
   const generatePageNumbers = (totalPages: number, currentPage: number) => {
     const pages = [];
     const maxPagesToShow = 3;
@@ -67,7 +89,26 @@ export default function CustomPagination({
   const pageNumbers = generatePageNumbers(totalPages, currentPage);
 
   return (
-    <Pagination className="mx-0 w-fit">
+    <Pagination className="mx-0 w-fit flex max-md:flex-col items-center gap-2">
+      <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const page = e.currentTarget.page.value;
+            onPageChange(Number(page));
+          }}
+          className="flex items-center justify-center"
+        >
+          <input
+            type="number"
+            min="1"
+            max={totalPages.toString()}
+            name="page"
+            placeholder={currentPage.toString()}
+            className="block text-center transition-colors bg-transparent border-b-2 border-foreground/50 focus:border-primary text-foreground outline-none"
+          />
+        </form>
+      </div>
       <PaginationContent>
         <PaginationPrevious
           onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
