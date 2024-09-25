@@ -1,112 +1,100 @@
-"use client";
-import { useEffect, useState } from "react";
 import fetchData from "@/lib/fetchData";
 import { AnimeData } from "@/types/anime";
 import CustomPagination from "@/components/CustomPagination";
-
-import { PaginationType } from "@/types/pagination";
-import Loading from "@/app/loading";
 import AnimeCard from "./AnimeCard";
-import { AnimatePresence, motion } from "framer-motion";
+import FetchError from "@/components/FetchError";
+import { Div } from "@/components/use-client";
+import { SearchX } from "lucide-react";
 
-export default function AnimeList() {
-  const [animeList, setAnimeList] = useState<AnimeData[]>([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-  const [pagination, setPagination] = useState<PaginationType | null>(null);
+export default async function AnimeList({
+  generatedParams,
+}: {
+  generatedParams: string;
+}) {
+  const res = await fetchData<AnimeData[]>(
+    `anime${generatedParams}${generatedParams ? "&" : "?"}sfw=true`
+  );
+  if (!res.ok) return <FetchError msg="Failed to fetch anime data" />;
+  const { data: animeList, pagination } = res;
 
-  const fetchAnimeData = async (p?: number) => {
-    setLoading(true);
-    const res = await fetchData<AnimeData[]>(
-      `anime?q=${search.trim()}&limit=25&page=${p ? p : page}`
+  if (animeList.length === 0) {
+    return (
+      <div className="min-h-80 grid place-items-center">
+        <div>
+          <SearchX size={48} className="mx-auto" />
+          <h3 className="text-3xl text-center text-foreground capitalize">
+            No anime found
+          </h3>
+        </div>
+      </div>
     );
-    if (!res.ok) return;
-    setAnimeList(res.data);
-    setPagination(res.pagination);
-
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchAnimeData();
-  }, [page]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      fetchAnimeData(1);
-    }, 500);
-
-    return () => clearTimeout(timeout);
-  }, [search]);
+  }
 
   return (
     <div>
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search anime..."
-        className="block w-full max-w-[500px] p-2 my-6 mx-auto transition-colors bg-transparent border-b-2 border-accent/50 focus:border-foreground text-foreground outline-none"
-      />
-
       <div className="flex max-md:flex-col justify-between items-center my-4">
         {pagination && (
           <>
-            <label className="text-lg font-bold">
-              Total: {pagination.items.total}
-            </label>
+            <div className="flex max-sm:flex-col">
+              <div className="text-lg text-foreground/80">
+                Total:
+                <span className="ml-1 text-foreground font-semibold">
+                  {pagination.items.total}
+                </span>
+              </div>
+              <span className="mx-3">-</span>
+              <div className="text-lg text-foreground/80">
+                In this page:
+                <span className="ml-1 text-foreground font-semibold">
+                  {pagination.items.count}
+                </span>
+              </div>
+            </div>
             <CustomPagination
               currentPage={pagination.current_page}
               totalPages={pagination.last_visible_page}
-              onPageChange={setPage}
             />
           </>
         )}
       </div>
       <div className="relative min-h-[300px]">
-        <AnimatePresence>
-          {loading ? (
-            <>
-              <motion.div
-                className="absolute top-0 left-0 w-full h-full flex flex-col gap-10 justify-center items-center bg-background/80 z-10"
-                initial={{ opacity: 0, filter: "blur(10px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, filter: "blur(10px)" }}
+        <ul className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4">
+          {animeList.map((anime, index) => (
+            <li key={index}>
+              <Div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
               >
-                <Loading />
-                <Loading />
-                <Loading />
-              </motion.div>
-            </>
-          ) : (
-            <ul className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4">
-              {animeList.map((anime, index) => (
-                <motion.li
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  key={index}
-                >
-                  <AnimeCard anime={anime} />
-                </motion.li>
-              ))}
-            </ul>
-          )}
-        </AnimatePresence>
+                <AnimeCard anime={anime} />
+              </Div>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="flex max-md:flex-col gap-2 justify-between items-center my-4">
         {pagination && (
           <>
-            <label className="text-lg font-bold">
-              Total Results: {pagination.items.total}
-            </label>
+            <div className="flex max-sm:flex-col">
+              <div className="text-lg text-foreground/80">
+                Total:
+                <span className="ml-1 text-foreground font-semibold">
+                  {pagination.items.total}
+                </span>
+              </div>
+              <span className="mx-3">-</span>
+              <div className="text-lg text-foreground/80">
+                In this page:
+                <span className="ml-1 text-foreground font-semibold">
+                  {pagination.items.count}
+                </span>
+              </div>
+            </div>
             <CustomPagination
               currentPage={pagination.current_page}
               totalPages={pagination.last_visible_page}
-              onPageChange={setPage}
             />
           </>
         )}
