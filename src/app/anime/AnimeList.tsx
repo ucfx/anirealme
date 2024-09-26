@@ -35,7 +35,7 @@ export default async function AnimeList({
       <div className="flex max-md:flex-col justify-between items-center my-4">
         {pagination && (
           <>
-            <div className="flex max-sm:flex-col">
+            <div className="flex">
               <div className="text-lg text-foreground/80">
                 Total:
                 <span className="ml-1 text-foreground font-semibold">
@@ -77,7 +77,7 @@ export default async function AnimeList({
       <div className="flex max-md:flex-col gap-2 justify-between items-center my-4">
         {pagination && (
           <>
-            <div className="flex max-sm:flex-col">
+            <div className="flex">
               <div className="text-lg text-foreground/80">
                 Total:
                 <span className="ml-1 text-foreground font-semibold">

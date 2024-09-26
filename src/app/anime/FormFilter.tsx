@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FilterStateType } from "./generateSearchParams";
 import { updateFilter } from "./actions";
 import { Button } from "@/components/ui/button";
@@ -136,20 +136,22 @@ export default function FormFilter({
                   name="min_score"
                   value={minScore}
                   min={1}
-                  max={10}
-                  onChange={(e) => setMinScore(e.target.value)}
+                  max={maxScore || 10}
+                  onChange={(e) => {
+                    setMinScore(e.target.value);
+                  }}
                   placeholder="Min Score"
                   className="w-1/2 h-10 p-2 border rounded-md bg-transparent focus:border-primary outline-none"
                 />
-                <ChevronRight size={24} className="text-gray-700" />
-
                 <input
                   type="number"
                   name="max_score"
                   value={maxScore}
-                  min={1}
+                  min={minScore || 1}
                   max={10}
-                  onChange={(e) => setMaxScore(e.target.value)}
+                  onChange={(e) => {
+                    setMaxScore(e.target.value);
+                  }}
                   placeholder="Max Score"
                   className="w-1/2 h-10 p-2 border rounded-md bg-transparent focus:border-primary outline-none"
                 />
