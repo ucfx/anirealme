@@ -30,22 +30,22 @@ export default function NavLink({
   const AnimeTab: LinkType[] = [
     {
       text: "Top Airing",
-      href: "/anime/top?filter=airing",
+      href: "/anime?type=tv&status=airing&order_by=score&sort=desc",
       desc: "Currently airing anime with the latest episodes and updates.",
     },
     {
       text: "Top Popularity",
-      href: "/anime/top?filter=bypopularity",
+      href: "/anime?type=tv&order_by=popularity&sort=asc",
       desc: "Discover the most popular anime series among global fans.",
     },
     {
       text: "Top Upcoming",
-      href: "/anime/top?filter=upcoming",
+      href: "/anime?type=tv&status=upcoming&order_by=members&sort=desc",
       desc: "Anticipate the top upcoming anime series and releases soon.",
     },
     {
       text: "Top Favorite",
-      href: "/anime/top?filter=favorite",
+      href: "/anime?type=tv&order_by=favorites&sort=desc",
       desc: "Fan-favorite anime series loved by the community and critics.",
     },
     {
