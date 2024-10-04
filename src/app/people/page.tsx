@@ -1,5 +1,4 @@
 import UnderDevelopment from "@/components/UnderDevelopment";
-
-export default function MangaPage() {
+export default function PeoplePage() {
   return <UnderDevelopment />;
 }

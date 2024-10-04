@@ -7,14 +7,17 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import React from "react";
+import React, { FormEventHandler } from "react";
 import { Button } from "./ui/button";
-import { LoopIcon } from "@radix-ui/react-icons";
 import { Search } from "lucide-react";
 import { DialogTitle } from "./ui/dialog";
+import { AnimeTab, MangaTab } from "./Navbar";
+import { useRouter } from "next/navigation";
 
 export function CommandMenu() {
   const [open, setOpen] = React.useState(false);
+  const [searchText, setSearchText] = React.useState("");
+  const router = useRouter();
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -26,6 +29,16 @@ export function CommandMenu() {
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
+
+  const handleSearch: FormEventHandler<HTMLInputElement> = (e) => {
+    setSearchText(e.currentTarget.value);
+  };
+
+  const handleClick = (href: string) => {
+    router.push(href);
+    setOpen(false);
+    setSearchText("");
+  };
 
   return (
     <>
@@ -47,14 +60,59 @@ export function CommandMenu() {
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <DialogTitle title="Search" />
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput
+          placeholder="Type a command or search..."
+          value={searchText}
+          onInput={handleSearch}
+        />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
-            <CommandItem>Top Anime</CommandItem>
-            <CommandItem>Most</CommandItem>
-            <CommandItem>Best</CommandItem>
+          <CommandGroup heading="Anime Suggestions">
+            <CommandItem
+              key={"Anime List"}
+              onSelect={() => handleClick("/anime")}
+            >
+              {"Anime List"}
+            </CommandItem>
+            {AnimeTab.map((tab) => (
+              <CommandItem
+                key={tab.href}
+                onSelect={() => handleClick(tab.href)}
+              >
+                {tab.text}
+              </CommandItem>
+            ))}
           </CommandGroup>
+          <CommandGroup heading="Manga Suggestions">
+            <CommandItem
+              key={"Manga List"}
+              onSelect={() => handleClick("/manga")}
+            >
+              {"Manga List"}
+            </CommandItem>
+            {MangaTab.map((tab) => (
+              <CommandItem
+                key={tab.href}
+                onSelect={() => handleClick(tab.href)}
+              >
+                {tab.text}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+          {searchText.trim() !== "" && (
+            <CommandGroup heading="Search Results">
+              <CommandItem
+                onSelect={() => handleClick(`/anime?q=${searchText}`)}
+              >
+                Search for &quot;{searchText}&quot; in Anime
+              </CommandItem>
+              <CommandItem
+                onSelect={() => handleClick(`/manga?q=${searchText}`)}
+              >
+                Search for &quot;{searchText}&quot; in Manga
+              </CommandItem>
+            </CommandGroup>
+          )}
         </CommandList>
       </CommandDialog>
     </>

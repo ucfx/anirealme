@@ -65,7 +65,7 @@ export default function VoicesList({
             <div className="flex">
               <Link
                 className="hover:brightness-75 transition-[filter] w-[80px] h-[120px] flex flex-col justify-center"
-                href={`/character/${c.character.mal_id}`}
+                href={`/characters/${c.character.mal_id}`}
                 prefetch={false}
               >
                 <Image
@@ -80,7 +80,7 @@ export default function VoicesList({
               <div className="mx-2 text-sm font-medium text-foreground flex flex-col h-full">
                 <h4 className="hover:underline">
                   <Link
-                    href={`/character/${c.character.mal_id}`}
+                    href={`/characters/${c.character.mal_id}`}
                     prefetch={false}
                   >
                     {c.character.name}

@@ -1,15 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FilterStateType } from "./generateSearchParams";
 import { updateFilter } from "./actions";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal } from "lucide-react";
 import {
-  animeStatus,
-  animeTypes,
-  anime_order_by,
-  rating,
+  mangaStatus,
+  mangaTypes,
+  manga_order_by,
   sort,
 } from "@/constant/filter";
 import { GenreType } from "@/types/genre";
@@ -72,28 +71,21 @@ export default function FormFilter({
         <div className="overflow-hidden">
           <div className="w-full max-w-[900px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <FilterInput
-              data={animeTypes}
-              label="Anime Type"
+              data={mangaTypes}
+              label="Manga Type"
               name="type"
               defaultValue={searchParams.type}
             />
 
             <FilterInput
-              data={animeStatus}
+              data={mangaStatus}
               label="Status"
               name="status"
               defaultValue={searchParams.status}
             />
 
             <FilterInput
-              data={rating}
-              label="Rating"
-              name="rating"
-              defaultValue={searchParams.rating}
-            />
-
-            <FilterInput
-              data={anime_order_by}
+              data={manga_order_by}
               label="Order By"
               name="order_by"
               defaultValue={searchParams.order_by}

@@ -33,9 +33,14 @@ type AnimeRole = {
   anime: AnimeInfo;
 };
 
+type MangaRole = {
+  role: string;
+  manga: AnimeInfo;
+};
+
 export type CharacterFull = {
   anime: AnimeRole[];
-  manga: any[];
+  manga: MangaRole[];
   voices: VoiceActor[];
 } & CharacterInfo;
 
