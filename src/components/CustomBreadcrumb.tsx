@@ -57,9 +57,9 @@ export default function CustomBreadcrumb({
 
           if (index === 1) {
             const p = paths[0];
-            if (p === "anime" && animeName) {
+            if ((p === "anime" || p === "manga") && animeName) {
               path = animeName;
-            } else if (p === "character" && characterName) {
+            } else if (p === "characters" && characterName) {
               path = characterName;
             } else if (p === "people" && personName) {
               path = personName;

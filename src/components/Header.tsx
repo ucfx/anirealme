@@ -41,8 +41,11 @@ export default function Header() {
           >
             <DrawerDescription></DrawerDescription>
 
-            <div className="w-full">
-              <DrawerTitle>
+            <div className="w-full flex flex-col">
+              <DrawerTitle
+                className="relative after:content-[''] after:absolute after:-bottom-4 after:left-1/2 after:-translate-x-1/2
+                            after:w-[170px] after:h-[2px] after:rounded-full after:bg-foreground/10"
+              >
                 <DrawerClose asChild>
                   <Logo size="lg" />
                 </DrawerClose>

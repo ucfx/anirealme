@@ -11,7 +11,7 @@ type Props = {
 export default function MiniList({ href, children, className }: Props) {
   return (
     <div
-      className={`relative overflow-hidden min-h-[150px] max-h-[550px] ${className}`}
+      className={`relative overflow-y-hidden min-h-[150px] max-h-[550px] ${className}`}
     >
       <div className="absolute w-full h-1/3 bottom-0 bg-gradient-to-t from-black to-transparent" />
       {children}

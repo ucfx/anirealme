@@ -8,7 +8,7 @@ const limiter = new Bottleneck({
 
 const cache = new LRUCache<string, APIResponse<any>>({
   max: 500,
-  ttl: 1000 * 60 * 60 * 24,
+  ttl: 1000 * 60 * 60,
 });
 
 const ongoingRequests = new Map<string, Promise<APIResponse<any>>>();
@@ -41,7 +41,7 @@ export default async function fetchData<T>(
     console.log("Fetching data from:", endpoint);
     const response = await fetch(`https://api.jikan.moe/v4/${endpoint}`, {
       next: {
-        revalidate: 60 * 60 * 24,
+        revalidate: 60 * 60,
       },
     });
 

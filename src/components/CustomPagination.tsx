@@ -7,28 +7,22 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
-  //   onPageChange: (page: number) => void;
-  //   generatedParams: string;
 };
 
 export default function CustomPagination({
   currentPage,
   totalPages,
-}: //   onPageChange,
-//   generatedParams,
-PaginationProps) {
+}: PaginationProps) {
   const router = useRouter();
   const onPageChange = (p: number) => {
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
 
-    // check url if anime/ or manga/
     const pathname = url.pathname.split("/")[1];
     if (p === 1) {
       params.delete("page");

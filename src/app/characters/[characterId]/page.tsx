@@ -66,33 +66,73 @@ export default async function CharacterDetails({
             </div>
             <div>
               <h4 className="text-lg font-bold mt-3 mb-1">Animeography</h4>
-              <div className="flex flex-wrap">
-                <div className="flex gap-2">
-                  <Link
-                    href={`/anime/${character.anime[0].anime.mal_id}`}
-                    className="hover:brightness-90 transition-[filter]"
-                  >
-                    <Image
-                      src={character.anime[0].anime.images.webp.large_image_url}
-                      alt={character.anime[0].anime.title}
-                      width={80}
-                      height={120}
-                      className="rounded-lg mx-auto"
-                    />
-                  </Link>
-
+              <div className="flex flex-wrap gap-4">
+                {character.anime[0] && (
                   <div>
-                    <Link
-                      href={`/anime/${character.anime[0].anime.mal_id}`}
-                      className="hover:underline"
-                    >
-                      {character.anime[0].anime.title}
-                    </Link>
-                    <p className="text-xs text-foreground/80">
-                      {character.anime[0].role}
-                    </p>
+                    <span className="w-full">Anime</span>
+                    <div className="flex gap-2">
+                      <Link
+                        href={`/anime/${character.anime[0].anime.mal_id}`}
+                        className="hover:brightness-90 transition-[filter]"
+                      >
+                        <Image
+                          src={
+                            character.anime[0].anime.images.webp.large_image_url
+                          }
+                          alt={character.anime[0].anime.title}
+                          width={80}
+                          height={120}
+                          className="rounded-lg mx-auto"
+                        />
+                      </Link>
+
+                      <div>
+                        <Link
+                          href={`/anime/${character.anime[0].anime.mal_id}`}
+                          className="hover:underline"
+                        >
+                          {character.anime[0].anime.title}
+                        </Link>
+                        <p className="text-xs text-foreground/80">
+                          {character.anime[0].role}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                )}
+                {character.manga[0] && (
+                  <div>
+                    <span className="w-full">Manga</span>
+                    <div className="flex gap-2">
+                      <Link
+                        href={`/manga/${character.manga[0].manga.mal_id}`}
+                        className="hover:brightness-90 transition-[filter]"
+                      >
+                        <Image
+                          src={
+                            character.manga[0].manga.images.webp.large_image_url
+                          }
+                          alt={character.manga[0].manga.title}
+                          width={80}
+                          height={120}
+                          className="rounded-lg mx-auto"
+                        />
+                      </Link>
+
+                      <div>
+                        <Link
+                          href={`/manga/${character.manga[0].manga.mal_id}`}
+                          className="hover:underline"
+                        >
+                          {character.manga[0].manga.title}
+                        </Link>
+                        <p className="text-xs text-foreground/80">
+                          {character.manga[0].role}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
